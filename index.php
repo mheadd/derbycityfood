@@ -10,7 +10,7 @@ define('DB_HOST', '');
 define('DB_USER', '');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'derbycityfood');
-define('SQL_QUERY_TEMPLATE', 'SELECT Est_Name, str_to_date(Date_Insp, \'%c/%e/%Y\') AS I_Date, Score, Grade FROM inspections WHERE Est_Name LIKE \'%{NAME}%\' ORDER BY I_Date DESC LIMIT 1');
+define('SQL_QUERY_TEMPLATE', 'SELECT EstablishmentName, DATE(InspectionDate) AS I_Date, Score, Grade FROM inspections WHERE EstablishmentName LIKE \'%{NAME}%\' ORDER BY I_Date DESC LIMIT 1');
 
 // Credentials for SMSified.
 define('SMS_USER', '');
@@ -44,7 +44,7 @@ try {
 	}
 	else {
 		$review = mysql_fetch_assoc($result);
-		$response = 'Name: ' . $review["Est_Name"] . ' ';
+		$response = 'Name: ' . $review["EstablishmentName"] . ' ';
 		$response .= 'Insp. Date: ' . $review["I_Date"] . ' ';
 		$response .= 'Score: ' . $review["Score"] . ' ';
 		$response .= 'Grade: ' . $review["Grade"];
